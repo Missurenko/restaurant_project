@@ -1,12 +1,24 @@
 package edu.bionic.domain.my;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
 
 /**
  * Created by bm on 25.08.17.
  */
 
-public enum Role {
-    ADMIN,MANADGER,WAITER
+@Getter
+@Setter
+@Entity
+@Table(name = "role")
+public class Role {
+
+    @Id
+    @Access(AccessType.PROPERTY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    private String name;
 }

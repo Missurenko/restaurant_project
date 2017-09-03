@@ -7,9 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import javax.persistence.Query;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by bm on 30.08.17.
@@ -23,18 +23,34 @@ public class JpaMaterialDao implements MaterialDao {
 
 
     @Override
-    public List<Material> getAllSortedByName(String name, BigDecimal min, BigDecimal max, String provider, LocalDateTime time,
-                                 boolean desc, int offset, int limit) {
-       return null;
+    public List<Material> getAll() {
+        return entityManager.createQuery("SELECT m FROM Material m", Material.class)
+                .getResultList();
     }
 
     @Override
-    public List<Material> getCount(String name, BigDecimal min, BigDecimal max, String provider, LocalDateTime time) {
-        return null;
+    public Optional<Material> getById(int materialId) {
+        Material material = entityManager.find(Material.class, materialId);
+        return Optional.ofNullable(material);
     }
 
     @Override
-    public List<Material> getAllSortedByPrice(String name, BigDecimal min, BigDecimal max, String provider, LocalDateTime time, boolean desk, int offset, int limit) {
-        return null;
+    @Transactional
+    public Material save(Material material) {
+        if (material.getId() == null) {
+            entityManager.persist(material);
+            return material;
+        } else {
+            return entityManager.merge(material);
+        }
+
+    }
+
+    @Override
+    @Transactional
+    public boolean delete(Integer materialId) {
+        Query query = entityManager.createQuery("DELETE FROM Material m WHERE m.id = :materialId");
+        query.setParameter("materialId", materialId);
+        return query.executeUpdate() != 0;
     }
 }

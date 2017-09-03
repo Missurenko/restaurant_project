@@ -14,23 +14,30 @@
 </head>
 <body>
 
-<c:if test="${materials.size() == 0}">
+<c:if test="${products.size() == 0}">
     Material на данный момент отсутствует
 </c:if>
 
 
-${materials.size()}
-<c:forEach var="material" items="${materials}" >
-
-    <strong>${material.id}</strong>
-    <strong>${material.price}</strong>
-    <strong>${material.name}</strong>
-    <strong>${material.provider}</strong>
 
 
-<p> SOMETING </p>
+<c:forEach var="product" items="${products}" >
 
+    <strong>${product.id}</strong>
+    <strong>${product.name}</strong>
+    <strong>${product.priceForSale}</strong>
+    <strong>${product.category}</strong>
+<b>
+    <c:forEach var="material" items="${product.materials}" >
+        <strong>${material.id}</strong>
+        <strong>${material.price}</strong>
+        <strong>${material.name}</strong>
+        <strong>${material.provider}</strong>
+    </c:forEach>
+</b>
+    <p> SOMETING </p>
 </c:forEach>
+
 
 
 

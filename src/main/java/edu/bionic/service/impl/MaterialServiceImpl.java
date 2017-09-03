@@ -2,15 +2,11 @@ package edu.bionic.service.impl;
 
 import edu.bionic.dao.MaterialDao;
 import edu.bionic.domain.my.Material;
-import edu.bionic.dto.MaterialSort;
-import edu.bionic.dto.ProductSort;
 import edu.bionic.service.MaterialService;
+import edu.bionic.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,50 +25,28 @@ public class MaterialServiceImpl implements MaterialService {
 
     @Override
     public List<Material> getAll() {
-        return null;
-    }
-
-    @Override
-    public List<Material> getCount(String name, BigDecimal min, BigDecimal max,
-                                   String provider, LocalDateTime time) {
-        return materialDao.getCount(name, min, max, provider, time);
-    }
-
-    @Override
-    public List<Material> getAll(String name, BigDecimal min, BigDecimal max,
-                                 String provider, LocalDateTime time, MaterialSort materialSort, int offset, int limit) {
-        List<Material> result = new ArrayList<>();
-        switch (materialSort) {
-            case NAME_ASC:
-            case NAME_DESC:
-                result = this.materialDao.getAllSortedByName(name, min, max, provider, time, materialSort == MaterialSort.NAME_DESC, offset, limit);
-                break;
-            case PRICE_ASC:
-            case PRICE_DESC:
-                result = this.materialDao.getAllSortedByPrice(name, min, max, provider, time, materialSort == MaterialSort.PRICE_DESC, offset, limit);
-                break;
-        }
-        return result;
+        return materialDao.getAll();
     }
 
     @Override
     public Material getById(int materialId) {
-        return null;
+        return materialDao.getById(materialId).
+                orElseThrow(() -> new NotFoundException(String.format("Material this id=%d not found", materialId)));
     }
 
     @Override
     public Material create(Material material) {
-        return null;
+        return materialDao.save(material);
     }
 
     @Override
-    public void update(Material material) {
-
+    public Material update(Material material) {
+        return materialDao.save(material);
     }
 
     @Override
-    public void delete(Integer materialId) {
-
+    public boolean delete(Integer materialId) {
+        return materialDao.delete(materialId);
     }
 
 }

@@ -14,25 +14,26 @@
 </head>
 <body>
 
-<c:if test="${materials.size() == 0}">
+<c:if test="${users.size() == 0}">
     Material на данный момент отсутствует
 </c:if>
 
 
-${materials.size()}
-<c:forEach var="material" items="${materials}" >
-
-    <strong>${material.id}</strong>
-    <strong>${material.price}</strong>
-    <strong>${material.name}</strong>
-    <strong>${material.provider}</strong>
 
 
-<p> SOMETING </p>
+<c:forEach var="user" items="${users}" >
 
+    <strong>${user.id}</strong>
+    <strong>${user.email}</strong>
+    <strong>${user.password}</strong>
+    <strong>${user.name}</strong>
+    <strong>${user.salary}</strong>
+    <strong>${user.dateStartWork}</strong>
+    <strong>${user.sex}</strong>
+
+    <%--<strong>${user.role.name}</strong>--%>
+    <p> SOMETING </p>
 </c:forEach>
-
-
 
 </body>
 </html>

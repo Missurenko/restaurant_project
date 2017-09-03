@@ -48,7 +48,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void createNewOrder(Order order) {
         order.setDateTime(LocalDateTime.now());
-        order.setUser(userService.getAuthenticatedUser().orElse(null));
+//        order.setUser(userService.getAuthenticatedUser().orElse(null));
         orderDao.save(order);
     }
 

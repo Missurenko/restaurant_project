@@ -12,15 +12,23 @@ import java.util.List;
  */
 @Getter
 @Setter
+@Entity
+@Table(name = "product")
 public class Product {
 
-
+    @Id
+    @Access(AccessType.PROPERTY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    @Column(name = "name")
     private String name;
-
+    @Column(name = "price_for_sale")
     private BigDecimal priceForSale;
-
-
+    @Column(name = "category")
+    private Category category;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "material_for_product",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "material_id"))
     private List<Material> materials;
 }

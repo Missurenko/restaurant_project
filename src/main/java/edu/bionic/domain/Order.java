@@ -41,9 +41,9 @@ public class Order {
     @NotBlank(message = "Это поле должно быть заполнено")
     private String address;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "user_id")
+//    private User user;
 
 
     public Order() {
@@ -65,7 +65,7 @@ public class Order {
         this.email = email;
         this.phone = phone;
         this.address = address;
-        this.user = user;
+//        this.user = user;
     }
 
     @Override
@@ -178,11 +178,11 @@ public class Order {
         this.email = email;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 }

@@ -1,13 +1,8 @@
 package edu.bionic.service;
 
 
-import edu.bionic.domain.Order;
-import edu.bionic.domain.Product;
 import edu.bionic.domain.my.Material;
-import edu.bionic.dto.MaterialSort;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -21,8 +16,8 @@ public interface MaterialService {
 
     Material create(Material material);
 
-    void update(Material material);
+    Material update(Material material);
 
-    void delete(Integer materialId);
+    boolean delete(Integer materialId);
 }
 

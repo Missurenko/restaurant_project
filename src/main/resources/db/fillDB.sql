@@ -49,3 +49,51 @@ ALTER SEQUENCE material_id_seq RESTART WITH 1;
 
 INSERT INTO material ( price,name,provider,date_buy)
 VALUES ( 650,'meet','myCompany','2017-04-05 10:30:00');
+
+INSERT INTO material ( price,name,provider,date_buy)
+VALUES ( 50,'potato','myCompany','2017-04-05 10:30:00');
+
+INSERT INTO material ( price,name,provider,date_buy)
+VALUES ( 90,'tomato','myCompany','2017-04-05 10:30:00');
+
+INSERT INTO material ( price,name,provider,date_buy)
+VALUES ( 100,'orange','myCompany','2017-04-05 10:30:00');
+
+INSERT INTO product (name,description,price_for_sale,category)
+VALUES ( 'Шашлик','100г свинина',300,2);
+
+INSERT INTO product (name,description,price_for_sale,category)
+VALUES ( 'Суп с картошкай','110г',70,0);
+
+INSERT INTO product (name,description,price_for_sale,category)
+VALUES ( 'Вареники','200г',100,1);
+
+INSERT INTO material_for_product (product_id, material_id) VALUES (1, 1);
+INSERT INTO material_for_product (product_id, material_id) VALUES (2, 2);
+INSERT INTO material_for_product (product_id, material_id) VALUES (3, 2);
+
+
+
+INSERT INTO checks ( position,date_pay)
+VALUES ( 1,'2017-05-05 10:30:00');
+
+INSERT INTO checks ( position,date_pay)
+VALUES ( 2,'2017-05-05 10:30:00');
+
+INSERT INTO product_in_check (check_id, product_id) VALUES (1, 1);
+INSERT INTO product_in_check (check_id, product_id) VALUES (1, 2);
+
+INSERT INTO product_in_check (check_id, product_id) VALUES (2, 1);
+INSERT INTO product_in_check (check_id, product_id) VALUES (2, 2);
+INSERT INTO product_in_check (check_id, product_id) VALUES (2, 3);
+
+INSERT INTO role (name) VALUES (0);
+INSERT INTO role (name) VALUES (1);
+
+INSERT INTO users ( email,password,name,salary,date_start_work,sex,role_id)
+VALUES ( 'user@mail.com','$2a$10$PgBb/VbejOXpdopzGU3AquVu9LDr9PhQ0fcBiGIYsVQeKB.p/paQm',
+'Username',10000,'2015-05-05 10:30:00',0,1);
+
+INSERT INTO users ( email,password,name,salary,date_start_work,sex,role_id)
+VALUES ( 'admin@mail.com','$2a$10$8IHi8NJot3CY5BDlHrivr.cVMJwtznYTNli3p7GcgwOtsF8VxgMWK',
+'Administrator',15000,'2014-05-05 10:30:00',1,2);

@@ -1,7 +1,6 @@
 package edu.bionic.domain.my;
 
 
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,25 +14,24 @@ import java.util.List;
  */
 @Getter
 @Setter
+@Entity
+@Table(name = "checks")
 public class Checks {
 
-
+    @Id
+    @Access(AccessType.PROPERTY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private BigDecimal price;
-
-    private String codeCardVisitor;
-
-    private LocalDateTime dateCame;
+    @Column(name = "date_pay")
     private LocalDateTime datePay;
-
+    @Column(name = "position")
     private Integer position;
 
 
-    private List<Product> productList;
-
-
-    private User user;
-
-
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "product_in_check",
+            joinColumns = @JoinColumn(name = "check_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+            private List<Product> productList;
 }

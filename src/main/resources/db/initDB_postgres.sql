@@ -104,4 +104,3 @@ CREATE TABLE product_in_check (
 );
 
 
-

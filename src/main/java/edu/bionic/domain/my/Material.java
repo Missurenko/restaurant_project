@@ -20,13 +20,13 @@ public class Material {
     @Access(AccessType.PROPERTY)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    @Column(name = "name")
     private String name;
-
+    @Column(name = "price")
     private BigDecimal price;
-
+    @Column(name = "provider")
     private String provider;
-
+    @Column(name = "date_buy")
     private LocalDateTime dateBuy;
 
     @Override
@@ -58,4 +58,5 @@ public class Material {
                 '}';
     }
 
- }
+
+}
