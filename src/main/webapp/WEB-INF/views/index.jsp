@@ -4,7 +4,7 @@
 <c:set var="title" value="Главная" scope="request"/>
 <jsp:include page="components/head.jsp"/>
 <body>
-<jsp:include page="components/header.jsp"/>
+<%--<jsp:include page="components/header.jsp"/>--%>
 <div id="main" class="container">
     <div class="row align-items-center">
         <div class="col-12">

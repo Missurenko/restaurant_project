@@ -44,6 +44,10 @@
 -- INSERT INTO comments (product_id, author, datetime, text, rating)
 -- VALUES (1, 'Инна', '2017-04-05 10:30:00', 'Хоший телефон. Единственный недостаток это цена :(', 4);
 
+
+-- START
+
+
 DELETE FROM material;
 ALTER SEQUENCE material_id_seq RESTART WITH 1;
 

@@ -31,4 +31,15 @@ public class Product {
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "material_id"))
     private List<Material> materials;
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", priceForSale=" + priceForSale +
+                ", category=" + category +
+                ", materials=" + materials +
+                '}';
+    }
 }
