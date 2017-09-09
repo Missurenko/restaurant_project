@@ -1,6 +1,7 @@
 package edu.bionic.dao.jpa;
 
 import edu.bionic.dao.ChecksDao;
+import edu.bionic.domain.Order;
 import edu.bionic.domain.my.Checks;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,9 +21,6 @@ public class JpaChecksDao implements ChecksDao {
 
     @PersistenceContext
     private EntityManager entityManager;
-
-
-
 
     @Override
     public List<Checks> getAll() {
@@ -45,7 +43,6 @@ public class JpaChecksDao implements ChecksDao {
         } else {
             return entityManager.merge(checks);
         }
-
     }
 
     @Override
@@ -54,5 +51,12 @@ public class JpaChecksDao implements ChecksDao {
         Query query = entityManager.createQuery("DELETE FROM Checks m WHERE m.id = :checksId");
         query.setParameter("checksId", checksId);
         return query.executeUpdate() != 0;
+    }
+
+    @Override
+    public List<Checks> getAllByUser(Integer id) {
+        return entityManager.createQuery("SELECT c FROM Checks c WHERE c.user.id = :userId", Checks.class)
+                .setParameter("userId", id)
+                .getResultList();
     }
 }

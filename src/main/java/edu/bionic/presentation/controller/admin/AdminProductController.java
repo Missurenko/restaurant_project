@@ -1,7 +1,9 @@
 package edu.bionic.presentation.controller.admin;
 
-import edu.bionic.domain.Product;
-import edu.bionic.service.ProductService;
+import edu.bionic.domain.my.Product;
+
+import edu.bionic.service.ProductRService;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,21 +17,21 @@ import javax.validation.Valid;
 public class AdminProductController {
 
     private final int PAGE_SIZE = 5;
-    private ProductService productService;
+    private ProductRService productRService;
 
-    public AdminProductController(ProductService productService) {
-        this.productService = productService;
+    public AdminProductController(ProductRService productRService) {
+        this.productRService = productRService;
     }
 
     @GetMapping
     public String showProducts(Model model) {
-        model.addAttribute("products", productService.getAll());
+        model.addAttribute("products", productRService.getAll());
         return "admin/product-list";
     }
 
     @GetMapping("{productId}")
     public String editProductPage(@PathVariable("productId") Integer productId, Model model) {
-        model.addAttribute("product", productService.getById(productId));
+        model.addAttribute("product", productRService.getById(productId));
         return "admin/product-edit";
     }
 
@@ -42,7 +44,7 @@ public class AdminProductController {
             return "admin/product-edit";
         }
         product.setId(productId);
-        productService.update(product);
+        productRService.update(product);
         redirectAttributes.addFlashAttribute("updateIsSuccessful", true);
         return "redirect:/admin/products/" + productId;
     }
@@ -62,13 +64,13 @@ public class AdminProductController {
             model.addAttribute("isNew", true);
             return "admin/product-edit";
         }
-        Product createdProduct = productService.create(product);
+        Product createdProduct = productRService.create(product);
         return "redirect:/admin/products/" + createdProduct.getId();
     }
 
     @PostMapping("{productId}/delete")
     public String deleteProduct(@PathVariable("productId") Integer productId) {
-        productService.delete(productId);
+        productRService.delete(productId);
         return "redirect:/admin/products/";
     }
 }

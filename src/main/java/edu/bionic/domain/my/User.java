@@ -4,8 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 /**
  * Created by bm on 25.08.17.
@@ -30,17 +28,15 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "salary")
-    private BigDecimal salary;
-
-    @Column(name = "date_start_work")
-    private LocalDateTime dateStartWork;
-
-    @Column(name = "sex")
-    private Sex sex;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_id")
     private Role role;
+//
+//    @Column(name = "salary")
+//    private BigDecimal salary;
+//
+//    @Column(name = "date_start_work")
+//    private LocalDateTime dateStartWork;
+//
+//    @Column(name = "sex")
+//    private Sex sex;
 
 }

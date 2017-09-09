@@ -1,6 +1,7 @@
 package edu.bionic.service;
 
 
+import edu.bionic.domain.Order;
 import edu.bionic.domain.my.Checks;
 import edu.bionic.domain.my.Material;
 
@@ -16,10 +17,14 @@ public interface CheckService {
 
     Checks getById(int checksId);
 
-    Checks create(Checks checks);
+    void addProductToCheck(Checks currentCheck, Integer productId);
 
-    Checks update(Checks checks);
+    void createNewCheck(Checks check);
 
-    boolean delete(Integer checksId);
+
+
+    void removeProductFromCheck(Checks currentCheck, Integer index);
+
+    List<Checks> getAllByAuthUser();
 }
 

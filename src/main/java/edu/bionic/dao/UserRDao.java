@@ -18,4 +18,6 @@ public interface UserRDao {
     User save(User user);
 
     boolean delete(Integer userId);
+
+    Optional<User> getByEmail(String username);
 }

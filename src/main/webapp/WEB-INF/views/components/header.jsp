@@ -11,18 +11,18 @@
                 <ul class="nav d-none d-sm-flex">
                     <li class="nav-item">
                         <a href="<c:url value="/"/>" class="nav-link">
-                            Главная
+                            Main
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<c:url value="/products"/>" class="nav-link">
-                            Товары
+                        <a href="<c:url value="/productsR"/>" class="nav-link">
+                            Dishes menu
                         </a>
                     </li>
-                    <sec:authorize url="/orders">
+                    <sec:authorize url="/checks">
                         <li class="nav-item">
-                            <a href="<c:url value="/orders"/>" class="nav-link">
-                                Предыдущие заказы
+                            <a href="<c:url value="/checks"/>" class="nav-link">
+                                checks заказы
                             </a>
                         </li>
                     </sec:authorize>
@@ -33,14 +33,14 @@
                     </button>
                     <div class="dropdown-menu">
                         <a href="<c:url value="/"/>" class="dropdown-item">
-                            Главная
+                            Main
                         </a>
-                        <a href="<c:url value="/products"/>" class="dropdown-item">
-                            Товары
+                        <a href="<c:url value="/productsR"/>" class="dropdown-item">
+                            Dishes menu
                         </a>
-                        <sec:authorize url="/orders">
-                            <a href="<c:url value="/orders"/>" class="dropdown-item">
-                                Предыдущие заказы
+                        <sec:authorize url="/checks">
+                            <a href="<c:url value="/checks"/>" class="dropdown-item">
+                                Предыдущие checks
                             </a>
                         </sec:authorize>
                     </div>

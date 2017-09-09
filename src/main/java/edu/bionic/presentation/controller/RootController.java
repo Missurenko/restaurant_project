@@ -1,7 +1,7 @@
 package edu.bionic.presentation.controller;
 
-import edu.bionic.domain.User;
-import edu.bionic.service.UserService;
+import edu.bionic.domain.my.User;
+import edu.bionic.service.UserRService;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +15,11 @@ import javax.validation.Valid;
 @Controller
 public class RootController {
 
-    private UserService userService;
+    private UserRService userRService;
 
-    public RootController(UserService userService) {
-        this.userService = userService;
+  
+    public RootController(UserRService userRService) {
+        this.userRService = userRService;
     }
 
     @GetMapping("/")
@@ -51,7 +52,7 @@ public class RootController {
             return "register";
         }
 
-        userService.registerNewUser(user);
+        userRService.registerNewUser(user);
         return "redirect:/";
     }
 }

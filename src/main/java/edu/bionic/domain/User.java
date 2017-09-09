@@ -7,7 +7,7 @@ import javax.persistence.*;
 //
 //@Entity
 //@Table(name = "user")
-public class User {
+public class User extends edu.bionic.domain.my.User {
 
     @Id
     @Access(AccessType.PROPERTY)
@@ -96,9 +96,9 @@ public class User {
         this.email = email;
     }
 
-    public Role getRole() {
-        return role;
-    }
+//    public Role getRole() {
+//        return role;
+//    }
 
     public void setRole(Role role) {
         this.role = role;

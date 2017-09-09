@@ -2,11 +2,9 @@ package edu.bionic.service.impl;
 
 
 import edu.bionic.dao.ProductRDao;
-
+import edu.bionic.domain.my.Category;
 import edu.bionic.domain.my.Product;
-
 import edu.bionic.service.ProductRService;
-
 import edu.bionic.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,6 +48,19 @@ public class ProductRServiceImpl implements ProductRService {
     @Override
     public boolean delete(Integer productId) {
         return productRDao.delete(productId);
+    }
+
+    @Override
+    public int getCount(Category categoty, String name) {
+        return productRDao.getCount(categoty, name);
+    }
+
+    @Override
+    public List<Product> getAll(Category categoty, String name, int offset, int limit) {
+        if (categoty == Category.ALL) {
+            categoty = null;
+        }
+        return productRDao.getAll(categoty, name, offset, limit);
     }
 
 }

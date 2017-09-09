@@ -1,7 +1,7 @@
 package edu.bionic.dto;
 
 import com.google.common.collect.Sets;
-import edu.bionic.domain.User;
+import edu.bionic.domain.my.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

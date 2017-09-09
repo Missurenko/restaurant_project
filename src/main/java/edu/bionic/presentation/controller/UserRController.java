@@ -29,7 +29,7 @@ public class UserRController {
     @GetMapping
     public String showAllMaterial(Model model){
 
-        model.addAttribute("users",userRService.getAll());
+        model.addAttribute("users",userRService.getAuthenticatedUser());
 
         return "user/user-list";
     }

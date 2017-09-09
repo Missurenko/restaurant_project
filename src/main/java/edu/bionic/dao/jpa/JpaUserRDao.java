@@ -53,4 +53,12 @@ public class JpaUserRDao implements UserRDao {
         query.setParameter("userId", userId);
         return query.executeUpdate() != 0;
     }
+
+    @Override
+    public Optional<User> getByEmail(String username) {
+       User user = entityManager.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class)
+                .setParameter("email", username)
+                .getSingleResult();
+        return Optional.ofNullable(user);
+    }
 }

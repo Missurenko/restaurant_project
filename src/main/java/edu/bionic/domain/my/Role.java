@@ -1,7 +1,7 @@
 package edu.bionic.domain.my;
 
-import lombok.Getter;
-import lombok.Setter;
+
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
@@ -9,16 +9,13 @@ import javax.persistence.*;
  * Created by bm on 25.08.17.
  */
 
-@Getter
-@Setter
-@Entity
-@Table(name = "role")
-public class Role {
 
-    @Id
-    @Access(AccessType.PROPERTY)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+public enum Role implements GrantedAuthority {
+    ADMIN,
+    USER;
 
-    private String name;
+    @Override
+    public String getAuthority() {
+        return this.name();
+    }
 }

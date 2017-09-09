@@ -1,6 +1,7 @@
 package edu.bionic.dao;
 
 
+import edu.bionic.domain.my.Category;
 import edu.bionic.domain.my.Product;
 
 import java.util.List;
@@ -20,4 +21,8 @@ public interface ProductRDao {
     Product save(Product product);
 
     boolean delete(Integer productId);
+
+    int getCount(Category categoty, String name);
+
+    List<Product> getAll(Category categoty, String name, int offset, int limit);
 }

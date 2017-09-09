@@ -10,67 +10,111 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>All product for sale</title>
-</head>
+<c:set var="title" value="Каталог товаров" scope="request"/>
+<jsp:include page="../components/head.jsp"/>
 <body>
-
+<jsp:include page="../components/header.jsp"/>
 <c:if test="${products.size() == 0}">
     Material на данный момент отсутствует
 </c:if>
+<div id="main" class="container">
+    <div class="row">
+        <div class="col-12 mt-5">
+            <h1 class="text-center">Menu</h1>
+            <div class="row mt-1">
+                <div class="col-12 col-sm-3 col-md-4 col-lg-4">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Dishes name</label>
+                            <input type="text" id="name" name="name" value="${param.name}" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="radio" name="category" value="ALL"> ALL <br>
+                            <input type="radio" name="category" value="HOT" checked> HOT<br>
+                            <input type="radio" name="category" value="SECOND"> SECOND<br>
 
-<h1 class="text-center">Menu</h1>
-<div class="row mt-1">
-    <div class="col-12">
-        <form>
-            <div class="form-group">
-                <label for="name">Dishes name</label>
-                <input type="text" id="name" name="name" value="${parem.name}" class="form-control"/>
-            </div>
-            <div class="form-group">
-                <label>Price</label>
-                <div class="row">
-                    <div class="col-12">
-                        <label for="min" class="text-left text-sm-right">min</label>
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-light">Search</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-12 col-sm-9 col-md-8 col-lg-8">
+                    <div id="catalog" class="row">
+                        <c:forEach var="product" items="${products}">
+                            <jsp:useBean id="product" type="edu.bionic.domain.my.Product"/>
+
+                            <div class="col-xs-6 col-sm-6">
+                                <div class="text-center">${product.name}</div>
+
+                                    <a href="<c:url value="productsR/${product.id}"/>" class="product">
+                                        <c:if test="${product.name == 'Soup with potatoes'}">
+                                        <img src="/resources/img/coup.jpg" class="img-thumbnail">
+                                        </c:if>
+                                        <c:if test="${product.name == 'Barbecue'}">
+                                            <img src="/resources/img/barbecue.jpg" class="img-thumbnail">
+                                        </c:if>
+                                        <c:if test="${product.name == 'Vareniki'}">
+                                            <img src="/resources/img/vareniks.jpg" class="img-thumbnail">
+
+                                        </c:if>
+                                        <c:if test="${product.name == 'Chicken cabbage rolls'}">
+                                            <img src="/resources/img/Chicken cabbage rolls.jpg" class="img-thumbnail">
+                                        </c:if>
+                                        <c:if test="${product.name == 'ketchup'}">
+                                            <img src="/resources/img/ketchup.jpg" class="img-thumbnail">
+                                        </c:if>
+                                        <c:if test="${product.name == 'boiled rice'}">
+                                            <img src="/resources/img/boiled rice.gif" class="img-thumbnail">
+                                        </c:if>
+                                        <c:if test="${product.name == 'Pilaf with mushrooms'}">
+                                            <img src="/resources/img/boiled rice.gif" class="img-thumbnail">
+                                        </c:if>
+
+                                    </a>
+
+                                <div class="text-center">Price:${product.priceForSale}</div>
+
+                            </div>
+
+                        </c:forEach>
                     </div>
-                    <div class="col-12">
-                        <input type="text" id="min" name="min" value="${param.min}" class="form-control"/>
-                    </div>
-                    <div class="col-12">
-                        <label for="max" class="text-left text-sm-right">max</label>
-                    </div>
-                    <div class="col-12">
-                        <input type="text" id="max" name="max" value="${param.max}" class="form-control"/>
+                    <nav>
+                        <c:set var="page" value="${param.page != null ? param.page : 1}"/>
+                        <c:set var="query" value="${pageContext.request.queryString != null ? pageContext.request.queryString.replaceFirst('&page=\\\\d+', '') : ''}"/>
+                        <ul class="pagination">
+                            <c:forEach begin="1" end="${productCount % pageSize == 0 ? productCount / pageSize : productCount / pageSize + 1 }" varStatus="loop">
+                                <c:choose>
+                                    <c:when test="${page == loop.index}">
+                                        <li class="page-item active">
+                                            <span class="page-link">${loop.index}</span>
+                                        </li>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <li class="page-item">
+                                            <a href="<c:url value="productsR?${query}&page=${loop.index}"/>" class="page-link">
+                                                    ${loop.index}
+                                            </a>
+                                        </li>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:forEach>
+                        </ul>
+                    </nav>
+                    <div class="text-center text-sm-left">
+
+                        <a href="<c:url value="/"/>">
+                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                        Main page
+                        </a>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="productSort">Sorting</label>
-                <select id="productSort" name="productSort" class="form-control">
 
-                </select>
             </div>
-            <div class="form-group text-center">
-                <button type="submit" class="btn btn-light">Search</button>
-            </div>
-        </form>
-    </div>
-    <div class="col-12">
-        <div id="catalog" class="row">
-            <c:forEach var="product" items="${products}">
-                <jsp:useBean id="product" type="edu.bionic.domain.my.Product"/>
-               <div class="col-xs-6">
-                   <a href="<c:url value="products/${product.id}"/>" class="product">
-                       <span class="info">${product.toString()}</span>
-                   </a>
-               </div>
-
-                           </c:forEach>
         </div>
     </div>
-
 </div>
 
-
+<jsp:include page="../components/footer.jsp"/>
 </body>
 </html>

@@ -18,4 +18,6 @@ public interface ChecksDao {
     Checks save(Checks checks);
 
     boolean delete(Integer checksId);
+
+    List<Checks> getAllByUser(Integer id);
 }

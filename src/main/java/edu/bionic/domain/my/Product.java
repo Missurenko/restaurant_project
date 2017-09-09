@@ -22,6 +22,8 @@ public class Product {
     private Integer id;
     @Column(name = "name")
     private String name;
+    @Column(name = "text")
+    private String text;
     @Column(name = "price_for_sale")
     private BigDecimal priceForSale;
     @Column(name = "category")
@@ -32,11 +34,13 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "material_id"))
     private List<Material> materials;
 
-    @Override
-    public String toString() {
+
+
+    public String printInfo() {
         return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", text='" + text + '\'' +
                 ", priceForSale=" + priceForSale +
                 ", category=" + category +
                 ", materials=" + materials +

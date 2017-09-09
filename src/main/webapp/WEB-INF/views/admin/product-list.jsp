@@ -13,7 +13,7 @@
 
             <div class="mt-3 text-center text-sm-right">
                 <a href="<c:url value="/admin/products/new"/>" class="btn btn-dark">
-                    Добавить товар
+                   Add Product
                     <i class="fa fa-plus" aria-hidden="true"></i>
                 </a>
             </div>
@@ -22,25 +22,24 @@
                 <table class="table">
                     <tr>
                         <th>ID</th>
-                        <th>Фото</th>
-                        <th>Имя</th>
-                        <th>Цена</th>
-                        <th>Цвет</th>
-                        <th>Память</th>
-                        <th>Экран</th>
-                        <th>Описание</th>
+                        <th>Photo</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Text</th>
+                        <th>Category</th>
+
                         <th></th>
                     </tr>
                     <c:forEach items="${products}" var="product">
                         <tr>
                             <td>${product.id}</td>
+
                             <td width="50"><img src="/resources/img/product-placeholder.jpg" class="img-thumbnail"></td>
+
                             <td>${product.name}</td>
-                            <td>${product.price}</td>
-                            <td>${product.color}</td>
-                            <td>${product.capacity} GB</td>
-                            <td>${product.display}</td>
-                            <td>${product.description}</td>
+                            <td>${product.priceForSale}</td>
+                            <td>${product.text}</td>
+                            <td>${product.category}</td>
                             <td>
                                 <div class="form-group">
                                     <a href="<c:url value="/admin/products/${product.id}"/>" class="btn btn-outline-dark btn-block">

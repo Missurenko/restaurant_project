@@ -3,7 +3,7 @@
 <footer id="footer">
     <div class="container">
         <div class="copyright text-center">
-            © 2017, Специализированный магазин “iShop” Продукция Apple.
+            © 2017, Restaurant.
         </div>
     </div>
 </footer>

@@ -1,6 +1,7 @@
 package edu.bionic.presentation.controller;
 
 import edu.bionic.domain.Order;
+import edu.bionic.domain.my.Checks;
 import edu.bionic.util.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
@@ -12,9 +13,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 public class GlobalControllerAdvice {
 
-    @ModelAttribute("currentOrder")
-    public Order createBasket() {
-        return new Order();
+    @ModelAttribute("currentCheck")
+    public Checks createBasket() {
+        return new Checks();
     }
 
     @ExceptionHandler(NotFoundException.class)

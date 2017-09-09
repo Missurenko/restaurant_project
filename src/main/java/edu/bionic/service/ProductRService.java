@@ -1,7 +1,7 @@
 package edu.bionic.service;
 
 
-import edu.bionic.domain.my.Material;
+import edu.bionic.domain.my.Category;
 import edu.bionic.domain.my.Product;
 
 import java.util.List;
@@ -20,5 +20,9 @@ public interface ProductRService {
     Product update(Product product);
 
     boolean delete(Integer productId);
+
+    int getCount(Category categoty, String name);
+
+    List<Product> getAll(Category categoty, String name, int offset, int limit);
 }
 
