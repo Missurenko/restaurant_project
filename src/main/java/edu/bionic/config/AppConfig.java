@@ -12,5 +12,4 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan({"edu.bionic.service", "edu.bionic.presentation"})
 public class AppConfig {
 
-
 }
